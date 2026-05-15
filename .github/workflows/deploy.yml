@@ -1,0 +1,23 @@
+name: Deploy to EC2 
+on: 
+  push: 
+    branches: [ main ] 
+jobs: 
+  deploy: 
+    runs-on: ubuntu-latest 
+    steps: 
+      - uses: actions/checkout@v4 
+      - name: Deploy via SSH 
+        uses: appleboy/ssh-action@v1.0.3 
+        with: 
+          host: ${{ secrets.EC2_HOST }} 
+          username: ubuntu 
+          key: ${{ secrets.EC2_SSH_KEY }} 
+          script: | 
+            cd /home/ubuntu 
+            if [ -d "my-app" ]; then cd my-app 
+            cd my-app 
+            docker build -t my-app . 
+            docker stop my-app 
+            docker rm my-app 
+            docker run -d --name my-app -p 80:3000 my-app

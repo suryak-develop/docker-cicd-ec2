@@ -1,15 +1,11 @@
-﻿const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
-
-app.get('/', (req, res) => {
-  res.send('🚀 CI/CD Pipeline is live! Deployed via GitHub Actions to Render');
-});
-
-app.get('/health', (req, res) => {
-  res.status(200).send('OK');
-});
-
-app.listen(port, () => {
-  console.log(`App running on port ${port}`);
-});
+const express = require('express'); 
+const app = express(); 
+app.get('/', (req, res) =
+  res.send('?? CI/CD Pipeline is live! Deployed via AWS Auto Scaling'); 
+}); 
+app.get('/health', (req, res) =
+  res.status(200).send('OK'); 
+}); 
+app.listen(port, '0.0.0.0', () =
+  console.log(`App running on port ${port}`); 
+}); 
